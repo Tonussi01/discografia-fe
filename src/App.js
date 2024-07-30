@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, Routes, useLocation, Link } from 'react-router-dom';
+import { GlobalStyle } from './GlobalStyle';
+import SearchBar from './Components/SearchBar';
+import SongsTab from './Components/SongsTab';
+import AlbumsTab from './Components/AlbumsTab';
+import { Header, Title, Tabs, TabButton, Main } from './styles';
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GlobalStyle />
+      <Header>
+        <Title>Discografia de DevMusic</Title>
+        <SearchBar />
+        <Tabs>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <TabButton active={location.pathname === '/'}>Músicas</TabButton>
+          </Link>
+          <Link to="/albums" style={{ textDecoration: 'none' }}>
+            <TabButton active={location.pathname === '/albums'}>Álbuns</TabButton>
+          </Link>
+        </Tabs>
+      </Header>
+      <Main>
+        <Routes>
+          <Route path="/" element={<SongsTab />} />
+          <Route path="/albums" element={<AlbumsTab />} />
+        </Routes>
+      </Main>
     </div>
   );
 }
