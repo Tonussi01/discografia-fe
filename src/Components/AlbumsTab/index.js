@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api';
-import { AddAlbumButton, AlbumList, Container, AlbumItem } from './styles'; // Importar o novo styled component
+import { AddAlbumButton, AlbumList, Container, AlbumItem } from './styles';
 import AlbumCard from '../AlbumCard';
 
 const AlbumsTab = () => {
@@ -26,7 +26,16 @@ const AlbumsTab = () => {
   };
 
   const handleAlbumClick = (id) => {
-    navigate(`/albums/${id}`); // Redireciona para a tela do álbum selecionado
+    navigate(`/albums/${id}`);
+  };
+
+  const handleDeleteAlbum = async (id) => {
+    try {
+      await api.delete(`/disco/${id}`);
+      setAlbums(albums.filter(album => album.id !== id));
+    } catch (error) {
+      console.error('Erro ao deletar álbum:', error);
+    }
   };
 
   return (
@@ -35,7 +44,7 @@ const AlbumsTab = () => {
       <AlbumList>
         {albums.map((album) => (
           <AlbumItem key={album.id} onClick={() => handleAlbumClick(album.id)}>
-            <AlbumCard album={album} />
+            <AlbumCard album={album} onDelete={handleDeleteAlbum} />
           </AlbumItem>
         ))}
       </AlbumList>

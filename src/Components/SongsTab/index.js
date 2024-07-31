@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import api from '../../api';
-import { SongsList, SongItem, SongTitle, SongArtist, SongDuration, DeleteButton, ConfirmationDialog } from './styles';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell, DeleteButton, ConfirmationDialog } from './styles';
 
 const SongsTab = () => {
   const [songs, setSongs] = useState([]);
@@ -37,18 +37,38 @@ const SongsTab = () => {
     setShowConfirmation(true);
   };
 
+  const formatDuration = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  };
+
   return (
-    <SongsList>
-      {songs.map((song) => (
-        <SongItem key={song.id}>
-          <SongTitle>{song.nome}</SongTitle>
-          <SongArtist>{song.nome_album}</SongArtist>
-          <SongDuration>{song.duracao} segundos</SongDuration>
-          <DeleteButton onClick={() => confirmDelete(song.id)}>
-            <FaTrashAlt />
-          </DeleteButton>
-        </SongItem>
-      ))}
+    <>
+      <Table>
+        <TableHeader>
+          <tr>
+            <TableHeaderCell>Nome</TableHeaderCell>
+            <TableHeaderCell>Álbum</TableHeaderCell>
+            <TableHeaderCell>Duração</TableHeaderCell>
+            <TableHeaderCell>Ações</TableHeaderCell>
+          </tr>
+        </TableHeader>
+        <TableBody>
+          {songs.map((song) => (
+            <TableRow key={song.id}>
+              <TableCell>{song.nome}</TableCell>
+              <TableCell>{song.nome_album}</TableCell>
+              <TableCell>{formatDuration(song.duracao)}</TableCell>
+              <TableCell>
+                <DeleteButton onClick={() => confirmDelete(song.id)}>
+                  <FaTrashAlt />
+                </DeleteButton>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
       {showConfirmation && (
         <ConfirmationDialog>
           <p>Tem certeza que deseja excluir esta música?</p>
@@ -56,7 +76,7 @@ const SongsTab = () => {
           <button onClick={() => setShowConfirmation(false)}>Não</button>
         </ConfirmationDialog>
       )}
-    </SongsList>
+    </>
   );
 };
 

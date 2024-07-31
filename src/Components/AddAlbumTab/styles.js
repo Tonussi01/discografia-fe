@@ -4,45 +4,56 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 24px;
+  background-color: #f9fafb;
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px;
-  gap: 10px;
+  max-width: 600px;
 `;
 
 export const Input = styled.input`
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
 `;
 
 export const TextArea = styled.textarea`
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: vertical;
-  height: 100px;
   width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-height: 100px;
 `;
 
 export const Button = styled.button`
-  padding: 10px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff;
+  background-color: #3b82f6;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
+  margin-top: 16px;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #2563eb;
   }
+`;
+
+export const Message = styled.div`
+  margin-top: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  color: ${(props) => (props.isSuccess ? '#2f855a' : '#e53e3e')};
+  background-color: ${(props) => (props.isSuccess ? '#d4f1d4' : '#fddede')};
+  border: 1px solid ${(props) => (props.isSuccess ? '#2f855a' : '#e53e3e')};
 `;

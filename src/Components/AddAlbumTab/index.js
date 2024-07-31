@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from './../../api';
-import { Container, Form, Input, TextArea, Button } from './styles'; // Certifique-se de que o caminho esteja correto
+import { Container, Form, Input, TextArea, Button, Message } from './styles'; 
 
 const AddAlbumTab = () => {
+  const [message, setMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    // Use os nomes dos campos do formulário corretamente
     const albumData = {
-      nome: event.target.name.value,       // Corrigido para 'name'
-      descricao: event.target.description.value // Corrigido para 'description'
+      nome: event.target.name.value,        
+      descricao: event.target.description.value, 
+      imagem_url: event.target.image_url.value 
     };
 
     try {
       const response = await api.post('/disco', albumData);
-      console.log('Álbum adicionado com sucesso:', response.data);
+      setMessage('Álbum adicionado com sucesso!');
+      setIsSuccess(true);
+      setTimeout(() => navigate('/albums'), 2000); // Redirecionar após 2 segundos para mostrar a mensagem
     } catch (error) {
+      setMessage('Erro ao adicionar o álbum.');
+      setIsSuccess(false);
       console.error('Erro ao adicionar o álbum:', error.response?.data || error.message);
     }
   };
@@ -31,7 +40,14 @@ const AddAlbumTab = () => {
           <label htmlFor="description">Descrição</label>
           <TextArea id="description" name="description" placeholder="Descrição" required />
         </div>
+        <div>
+          <label htmlFor="image_url">URL da Imagem</label>
+          <Input id="image_url" type="text" name="image_url" placeholder="URL da imagem" />
+        </div>
         <Button type="submit">Adicionar Álbum</Button>
+        {message && (
+          <Message isSuccess={isSuccess}>{message}</Message>
+        )}
       </Form>
     </Container>
   );

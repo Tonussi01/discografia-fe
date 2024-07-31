@@ -1,30 +1,44 @@
 import styled from 'styled-components';
 
-export const SongsList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+export const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 `;
 
-export const SongItem = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
+export const TableHeader = styled.thead`
+  background-color: #f4f4f4;
+  font-weight: bold;
   border-bottom: 1px solid #ddd;
-  position: relative;
 `;
 
-export const SongTitle = styled.div`
-  flex: 2;
+export const TableHeaderCell = styled.th`
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  &:last-child {
+    border-right: none;
+  }
 `;
 
-export const SongArtist = styled.div`
-  flex: 1;
+export const TableBody = styled.tbody`
+  background-color: #fff;
 `;
 
-export const SongDuration = styled.div`
-  flex: 1;
+export const TableRow = styled.tr`
+  border-bottom: 1px solid #ddd;
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+export const TableCell = styled.td`
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  &:last-child {
+    border-right: none;
+  }
 `;
 
 export const DeleteButton = styled.button`

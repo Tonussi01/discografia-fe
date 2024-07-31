@@ -4,10 +4,11 @@ import { GlobalStyle } from './GlobalStyle';
 import SearchBar from './Components/SearchBar';
 import SongsTab from './Components/SongsTab';
 import AlbumsTab from './Components/AlbumsTab';
-import AlbumFullTab from './Components/AlbumFullTab'; // Importar o novo componente
+import AlbumFullTab from './Components/AlbumFullTab';
 import AddAlbumTab from './Components/AddAlbumTab';
-import AddSongTab from './Components/AddSongTab'; // Importar o novo componente
+import AddSongTab from './Components/AddSongTab'; 
 import { Header, Title, Tabs, TabButton, Main } from './styles';
+import TabSearch from './Components/TabSearch';
 
 function App() {
   const location = useLocation();
@@ -16,7 +17,7 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <Header>
-        <Title>Discografia de DevMusic</Title>
+        <Title>Discografia TIÃO CARREIRO E PARDINHO</Title>
         <SearchBar />
         <Tabs>
           <Link to="/" style={{ textDecoration: 'none' }}>
@@ -34,6 +35,7 @@ function App() {
           <Route path="/albums/:id" element={<AlbumFullTab />} /> 
           <Route path="/addalbum" element={<AddAlbumTab />} />
           <Route path="/addsong" element={<AddSongTab />} /> 
+          <Route path="/search" element={<TabSearch />} />
         </Routes>
       </Main>
     </div>

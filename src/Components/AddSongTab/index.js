@@ -27,7 +27,7 @@ const AddSongTab = () => {
     const dataToSend = {
       nome: songData.nome,
       duracao: songData.duracao,
-      id_album: id_album, // Corrigido para id_album
+      id_album: id_album, 
     };
 
     try {

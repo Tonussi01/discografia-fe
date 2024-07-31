@@ -1,7 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../api';
-import { Container, AlbumImage, AlbumInfo, AlbumTitle, AlbumArtist, SongsList, SongItem, AddSongButton, DeleteButton } from './styles';
+import {
+  Container,
+  AlbumImage,
+  AlbumInfo,
+  AlbumTitle,
+  AlbumArtist,
+  SongsList,
+  SongItem,
+  SongName,
+  SongDuration,
+  DeleteButton,
+  AddSongButton
+} from './styles';
 import { FaTrash } from 'react-icons/fa'; // Importa o ícone de lixeira
 
 const AlbumFullTab = () => {
@@ -50,6 +62,12 @@ const AlbumFullTab = () => {
     }
   };
 
+  const formatDuration = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  };
+
   if (!album) {
     return <p>Carregando...</p>; // Exibe uma mensagem enquanto os dados estão sendo carregados
   }
@@ -66,8 +84,8 @@ const AlbumFullTab = () => {
         {musicas.length > 0 ? (
           musicas.map((song) => (
             <SongItem key={song.id}>
-              <div>{song.nome}</div>
-              <div>{song.duracao} segundos</div>
+              <SongName>{song.nome}</SongName>
+              <SongDuration>{formatDuration(song.duracao)}</SongDuration>
               <DeleteButton onClick={() => handleDeleteSong(song.id)}>
                 <FaTrash />
               </DeleteButton>
