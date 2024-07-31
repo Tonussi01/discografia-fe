@@ -4,10 +4,10 @@ import { CardContainer, AlbumImage, AlbumInfo, AlbumTitle, AlbumArtist } from '.
 const AlbumCard = ({ album }) => {
   return (
     <CardContainer>
-      <AlbumImage src={album.image} alt={album.name} />
+      <AlbumImage src={album.imageUrl || "https://via.placeholder.com/200"} alt={album.nome} />
       <AlbumInfo>
-        <AlbumTitle>{album.name}</AlbumTitle>
-        <AlbumArtist>{album.artist}</AlbumArtist>
+        <AlbumTitle>{album.nome}</AlbumTitle>
+        <AlbumArtist>{album.descricao || 'Descrição não disponível'}</AlbumArtist>
       </AlbumInfo>
     </CardContainer>
   );

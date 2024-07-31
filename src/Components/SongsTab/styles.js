@@ -1,32 +1,65 @@
 import styled from 'styled-components';
 
-export const SongsList = styled.div`
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const SongsList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 `;
 
-export const SongItem = styled.div`
-  background-color: #ffffff;
-  padding: 16px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px; 
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 16px;
+export const SongItem = styled.li`
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
 `;
 
-export const SongTitle = styled.h3`
-  font-size: 1.125rem; 
-  font-weight: bold; 
-  margin: 0;
+export const SongTitle = styled.div`
+  flex: 2;
 `;
 
-export const SongArtist = styled.p`
-  color: #718096;
-  margin: 0;
+export const SongArtist = styled.div`
+  flex: 1;
+`;
+
+export const SongDuration = styled.div`
+  flex: 1;
+`;
+
+export const DeleteButton = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f56565;
+  font-size: 1.2rem;
+  &:hover {
+    color: #e53e3e;
+  }
+`;
+
+export const ConfirmationDialog = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+  p {
+    margin-bottom: 10px;
+  }
+  button {
+    margin-right: 10px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background: #f56565;
+    color: white;
+    &:hover {
+      background: #e53e3e;
+    }
+  }
 `;

@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  
   * {
     margin: 0;
     padding: 0;
@@ -10,10 +9,10 @@ export const GlobalStyle = createGlobalStyle`
 
   html, body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px; 
+    font-size: 16px;
     line-height: 1.5;
-    background-color: #f7fafc; 
-    color: #1a202c; 
+    background-color: #f7fafc;
+    color: #1a202c;
   }
 
   a {
@@ -24,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
   }

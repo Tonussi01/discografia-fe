@@ -4,6 +4,9 @@ import { GlobalStyle } from './GlobalStyle';
 import SearchBar from './Components/SearchBar';
 import SongsTab from './Components/SongsTab';
 import AlbumsTab from './Components/AlbumsTab';
+import AlbumFullTab from './Components/AlbumFullTab'; // Importar o novo componente
+import AddAlbumTab from './Components/AddAlbumTab';
+import AddSongTab from './Components/AddSongTab'; // Importar o novo componente
 import { Header, Title, Tabs, TabButton, Main } from './styles';
 
 function App() {
@@ -28,6 +31,9 @@ function App() {
         <Routes>
           <Route path="/" element={<SongsTab />} />
           <Route path="/albums" element={<AlbumsTab />} />
+          <Route path="/albums/:id" element={<AlbumFullTab />} /> 
+          <Route path="/addalbum" element={<AddAlbumTab />} />
+          <Route path="/addsong" element={<AddSongTab />} /> 
         </Routes>
       </Main>
     </div>
